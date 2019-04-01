@@ -5,7 +5,7 @@ input_name = "heart.csv"
 df = pd.read_csv(input_name, parse_dates=["dateTime"], infer_datetime_format=True)
 # csv is read, do operations
 
-
+# adds an int column based on hour ranges; range(24)
 def addHourCol(output_name):
     d = []
     for date in df['dateTime']:
@@ -16,7 +16,7 @@ def addHourCol(output_name):
     df['hora'] = new_df
     df.to_csv(output_name, index=False)
 
-
+# adds an int column based on weekday; {'mon'-'sun': range(6)}
 def addWeekdayCol(output_name):
     d = []
     for date in df['dateTime']:
@@ -27,7 +27,7 @@ def addWeekdayCol(output_name):
     df['weekday'] = new_df
     df.to_csv(output_name, index=False)
 
-
+# adds a boolean column based on wether date was business period(true) or vacation(false)
 def addWorkCol(output_name):
     d = []
     for date in df['dateTime']:
@@ -45,3 +45,8 @@ def addWorkCol(output_name):
     df['working'] = new_df
     df.to_csv(output_name, index=False)
 
+
+'''
+other possible columns:
+- day period (morning, afternoon, night, dawn)
+'''
